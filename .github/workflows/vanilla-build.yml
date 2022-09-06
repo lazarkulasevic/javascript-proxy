@@ -1,0 +1,35 @@
+name: vanilla-build
+on:
+  push:
+    branches: [master]
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16.13.2'
+
+      - name: Remove old build files
+        run: rm -rf dist
+
+      - run: npm ci
+
+      - name: Vite Build
+        run: npm run build
+
+      # please check out the docs of the workflow for more details
+      # @see https://github.com/crazy-max/ghaction-github-pages
+      - name: Deploy to GitHub Pages
+        uses: crazy-max/ghaction-github-pages@v2
+        with:
+          # deploy to gh-pages branch
+          target_branch: gh-pages
+          # deploy the default output dir of VitePress
+          build_dir: dist
+        env:
+          # @see https://docs.github.com/en/actions/reference/authentication-in-a-workflow#about-the-github_token-secret
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
