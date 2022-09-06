@@ -2,7 +2,7 @@ import Interceptor from './Interceptor.js'
 
 class Dom extends Interceptor {
     static hooks = {
-        watchMethods: ['mount', 'registerConsole', 'consoleLog'],
+        watchMethods: ['mount', 'registerConsole', 'consoleLog', 'registerButton'],
         beforeMethodCall(name, args) {
             if (['mount', 'registerConsole'].includes(name)) {
                 if (!(document.querySelector(args) instanceof HTMLElement)) {
@@ -11,11 +11,15 @@ class Dom extends Interceptor {
             }
 
             if (name === 'mount') {
-                console.log('The app will mount.')
+                console.log(`The app will mount on root "${args}".`)
             }
 
             if (name === 'registerConsole') {
-                console.log('The console will be registered.')
+                console.log(`The console will be registered on root "${args}".`)
+            }
+
+            if (name === 'registerButton') {
+                console.log(`The button will be registered on root "${args[0]}".`)
             }
 
             if (name === 'consoleLog') {
@@ -33,7 +37,12 @@ class Dom extends Interceptor {
         this.components = components
         this.root = undefined
         this.consoleRoot = undefined
+        this.buttonRoot = undefined
         return this
+    }
+
+    get buttonElement() {
+        return this.buttonRoot
     }
 
     /**
@@ -57,8 +66,23 @@ class Dom extends Interceptor {
         return this
     }
 
+    /**
+     * @param {String} data
+     */
     consoleLog(data) {
         this.consoleRoot.innerHTML += `<p>${data}</p>`
+        return this
+    }
+
+    /**
+     * @param {String} root
+     * @param {Function} handler
+     */
+    registerButton(root, handler) {
+        this.buttonRoot = document.querySelector(root)
+        this.buttonRoot.addEventListener('click', handler)
+
+        console.log('The button is registered.')
         return this
     }
 }

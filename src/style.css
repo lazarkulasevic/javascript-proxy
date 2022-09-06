@@ -78,3 +78,7 @@ button:active {
   background-color: rgba(47, 148, 237, 0.06);
   border-radius: 25px;
 }
+
+.red {
+  background: #fe5050;
+}

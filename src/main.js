@@ -8,7 +8,10 @@ const app = new Dom({
 }).mount('#app')
 
 app.registerConsole('#console-output')
+    .registerButton('.my-button', handleClick)
 
-document.querySelector('.my-button').addEventListener('click', () => {
-    app.consoleLog('Clicked the button!')
-})
+function handleClick() {
+    const btnClassList = app.buttonElement.classList
+    btnClassList.toggle('red')
+    app.consoleLog(`The button is now ${btnClassList.contains('red') ? 'red' : 'blue'}.`)
+}
