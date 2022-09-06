@@ -13,5 +13,9 @@ app.registerConsole('#console-output')
 function handleClick() {
     const btnClassList = app.buttonElement.classList
     btnClassList.toggle('red')
-    app.consoleLog(`The button is now ${btnClassList.contains('red') ? 'red' : 'blue'}.`)
+
+    const btnColor = btnClassList.contains('red')
+        ? '<span class="text-red">red</span>'
+        : '<span class="text-blue">blue</span>'
+    app.consoleLog(`The button is now ${btnColor}.`)
 }

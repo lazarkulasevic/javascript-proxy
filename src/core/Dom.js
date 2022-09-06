@@ -23,7 +23,7 @@ class Dom extends Interceptor {
             }
 
             if (name === 'consoleLog') {
-                console.log(`New log at ${new Date().toLocaleString('en-GB')}:`, ...args)
+                console.log(`New HTML output log at ${new Date().toLocaleString('en-GB')}:`, ...args)
             }
         }
     }

@@ -10,6 +10,8 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+  --red: #fe5050;
+  --blue: #3d93d4;
 }
 
 a {
@@ -80,5 +82,13 @@ button:active {
 }
 
 .red {
-  background: #fe5050;
+  background: var(--red);
+}
+
+.text-red {
+  color: var(--red);
+}
+
+.text-blue {
+  color: var(--blue);
 }
