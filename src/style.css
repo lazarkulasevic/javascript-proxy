@@ -73,5 +73,8 @@ button:active {
 }
 
 .console {
+  margin: 1rem;
+  padding: 0.5rem;
   background-color: rgba(47, 148, 237, 0.06);
+  border-radius: 25px;
 }

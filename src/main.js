@@ -1,7 +1,7 @@
-import './style.css'
 import Dom from './core/Dom.js'
 import AppButton from './components/AppButton.js'
 import ConsoleOutput from './components/ConsoleOutput.js'
+import './style.css'
 
 const app = new Dom({
     components: [AppButton, ConsoleOutput]
