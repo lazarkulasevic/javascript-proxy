@@ -1,7 +1,6 @@
 import Dom from './core/Dom.js'
 import AppButton from './components/AppButton.js'
 import ConsoleOutput from './components/ConsoleOutput.js'
-import './style.css'
 
 const app = new Dom({
     components: [AppButton, ConsoleOutput]
@@ -17,5 +16,6 @@ function handleClick() {
     const btnColor = btnClassList.contains('red')
         ? '<span class="text-red">red</span>'
         : '<span class="text-blue">blue</span>'
+
     app.consoleLog(`The button is now ${btnColor}.`)
 }
