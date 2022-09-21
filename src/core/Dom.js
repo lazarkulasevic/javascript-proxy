@@ -37,12 +37,12 @@ class Dom extends Interceptor {
         this.components = components
         this.root = undefined
         this.consoleRoot = undefined
-        this.buttonRoot = undefined
+        this.buttons = {}
         return this
     }
 
-    get buttonElement() {
-        return this.buttonRoot
+    buttonElement(root) {
+        return this.buttons[root]
     }
 
     /**
@@ -69,6 +69,14 @@ class Dom extends Interceptor {
     /**
      * @param {String} data
      */
+    log(data) {
+        this.consoleRoot.innerHTML += `<p>${data}</p>`
+        return this
+    }
+
+    /**
+     * @param {String} data
+     */
     consoleLog(data) {
         this.consoleRoot.innerHTML += `<p>${data}</p>`
         return this
@@ -79,8 +87,8 @@ class Dom extends Interceptor {
      * @param {Function} handler
      */
     registerButton(root, handler) {
-        this.buttonRoot = document.querySelector(root)
-        this.buttonRoot.addEventListener('click', handler)
+        this.buttons[root] = document.querySelector(root)
+        this.buttons[root].addEventListener('click', handler)
 
         console.log('The button is registered.')
         return this

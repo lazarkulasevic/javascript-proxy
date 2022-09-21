@@ -74,6 +74,17 @@ button:active {
   box-shadow: 1px 2px 2px -1px #001554, 1px 2px 4px -2px #004d90;
 }
 
+.buttons-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
+
+.buttons-wrapper div {
+  padding: 20px;
+}
+
 .console {
   margin: 1rem;
   padding: 0.5rem;
@@ -85,8 +96,16 @@ button:active {
   background: var(--red);
 }
 
+.orange {
+  background: orange;
+}
+
 .text-red {
   color: var(--red);
+}
+
+.text-orange {
+  color: orange;
 }
 
 .text-blue {

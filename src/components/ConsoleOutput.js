@@ -1,8 +1,8 @@
 export default {
     html: `
         <div class="console">
-            <h3>Console Output:</h3>
-            <div id="console-output"></div>
+            <h3>Output:</h3>
+            <div id="output"></div>
         </div>
     `
 }
