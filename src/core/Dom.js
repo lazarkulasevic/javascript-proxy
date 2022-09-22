@@ -4,7 +4,7 @@ import Interceptor from './Interceptor.js'
  * @extends Interceptor
  */
 class Dom extends Interceptor {
-    static hooks = {
+    static options = {
         watchMethods: ['mount', 'registerConsole', 'consoleLog', 'registerButton'],
         beforeMethodCall(name, args) {
             if (['mount', 'registerConsole'].includes(name)) {
@@ -35,7 +35,7 @@ class Dom extends Interceptor {
      * @param {Array} components
      */
     constructor({ components }) {
-        super(Dom.hooks)
+        super(Dom.options)
         this.components = components
         this.root = undefined
         this.consoleRoot = undefined

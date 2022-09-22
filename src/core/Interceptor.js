@@ -1,21 +1,21 @@
 class Interceptor {
     /**
-     * @param {Object} hooks
-     * @param {String[]} hooks.watchMethods - method names
-     * @param {Function} [hooks.beforeMethodCall] - code block that executes before the method functionality
+     * @param {Object} options
+     * @param {String[]} options.watchMethods - method names
+     * @param {Function} [options.beforeMethodCall] - code block that executes before the method functionality
      * @return {Proxy}
      */
-    constructor(hooks) {
-        return Interceptor.#proxy(this, hooks)
+    constructor(options) {
+        return Interceptor.#proxy(this, options)
     }
 
-    static #proxy(obj, hooks) {
+    static #proxy(obj, options) {
         return new Proxy(obj, {
             get(target, prop) {
-                if (typeof target[prop] === 'function' && hooks.watchMethods.includes(prop)) {
+                if (typeof target[prop] === 'function' && options.watchMethods.includes(prop)) {
                     return new Proxy(target[prop], {
                         apply(target, thisArg, argumentsList) {
-                            hooks.beforeMethodCall(prop, argumentsList)
+                            options.beforeMethodCall(prop, argumentsList)
                             return Reflect.apply(target, thisArg, argumentsList)
                         }
                     })
