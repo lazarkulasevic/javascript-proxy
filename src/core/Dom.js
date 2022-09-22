@@ -12,21 +12,19 @@ class Dom extends Interceptor {
                     throw new TypeError(`Please pass the query selector of an HTML element to the ${name} method.`)
                 }
             }
-
-            if (name === 'mount') {
-                console.log(`The app will mount on root "${args}".`)
-            }
-
-            if (name === 'registerConsole') {
-                console.log(`The console will be registered on root "${args}".`)
-            }
-
-            if (name === 'registerButton') {
-                console.log(`The button will be registered on root "${args[0]}".`)
-            }
-
-            if (name === 'consoleLog') {
-                console.log(`New HTML output log at ${new Date().toLocaleString('en-GB')}:`, ...args)
+            switch (name) {
+                case 'mount':
+                    console.log(`The app will mount on root "${args}".`)
+                    break
+                case 'registerConsole':
+                    console.log(`The console will be registered on root "${args}".`)
+                    break
+                case 'registerButton':
+                    console.log(`The button will be registered on root "${args[0]}".`)
+                    break
+                case 'consoleLog':
+                    console.log(`New HTML output log at ${new Date().toLocaleString('en-GB')}:`, ...args)
+                    break
             }
         }
     }
@@ -56,7 +54,6 @@ class Dom extends Interceptor {
     mount(root) {
         this.root = document.querySelector(root)
         this.root.innerHTML = this.components.map(component => component.html).join('')
-
         console.log('The app is mounted.')
         return this
     }
@@ -66,7 +63,6 @@ class Dom extends Interceptor {
      */
     registerConsole(root) {
         this.consoleRoot = document.querySelector(root)
-
         console.log('The console is registered.')
         return this
     }
@@ -94,7 +90,6 @@ class Dom extends Interceptor {
     registerButton(root, handler) {
         this.buttons[root] = document.querySelector(root)
         this.buttons[root].addEventListener('click', handler)
-
         console.log('The button is registered.')
         return this
     }
