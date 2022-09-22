@@ -24,9 +24,9 @@ function handleBtn(btnSelector, btnColor) {
     const btnClassList = app.buttonElement(btnSelector).classList
     btnClassList.toggle(btnColor)
 
-    const btnHtml = btnClassList.contains(btnColor)
-        ? `<span class="text-${btnColor}">${btnColor}</span>`
-        : '<span class="text-blue">blue</span>'
-
-    return btnHtml
+    if (btnClassList.contains(btnColor)) {
+        return `<span class="text-${btnColor}">${btnColor}</span>`
+    } else {
+        return '<span class="text-blue">blue</span>'
+    }
 }
