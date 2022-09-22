@@ -79,7 +79,7 @@ class Dom extends Interceptor {
      * @param {String} data
      */
     consoleLog(data) {
-        this.consoleRoot.innerHTML += `<p>${data}</p>`
+        this.log(data)
         return this
     }
 
