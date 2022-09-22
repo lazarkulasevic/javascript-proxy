@@ -5,12 +5,11 @@ import Interceptor from './Interceptor.js'
  */
 class Dom extends Interceptor {
     static options = {
-        watchMethods: ['mount', 'registerConsole', 'consoleLog', 'registerButton'],
+        watchMethods: ['mount', 'registerConsole', 'registerButton', 'consoleLog'],
         beforeMethodCall(name, args) {
-            if (['mount', 'registerConsole'].includes(name)) {
-                if (!(document.querySelector(args) instanceof HTMLElement)) {
-                    throw new TypeError(`Please pass the query selector of an HTML element to the ${name} method.`)
-                }
+            if (['mount', 'registerConsole', 'registerButton'].includes(name)
+                && !(document.querySelector(args[0]) instanceof HTMLElement)) {
+                throw new TypeError(`Please pass the query selector of an HTML element to the ${name} method.`)
             }
             switch (name) {
                 case 'mount':
@@ -68,6 +67,7 @@ class Dom extends Interceptor {
     }
 
     /**
+     * @description This method is not being watched
      * @param {String} data
      */
     log(data) {
