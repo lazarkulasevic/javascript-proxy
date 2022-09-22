@@ -1,5 +1,8 @@
 import Interceptor from './Interceptor.js'
 
+/**
+ * @extends Interceptor
+ */
 class Dom extends Interceptor {
     static hooks = {
         watchMethods: ['mount', 'registerConsole', 'consoleLog', 'registerButton'],
@@ -29,7 +32,6 @@ class Dom extends Interceptor {
     }
 
     /**
-     * @constructor
      * @param {Array} components
      */
     constructor({ components }) {
@@ -41,6 +43,9 @@ class Dom extends Interceptor {
         return this
     }
 
+    /**
+     * @param {String} root
+     */
     buttonElement(root) {
         return this.buttons[root]
     }
