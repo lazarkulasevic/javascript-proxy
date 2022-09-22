@@ -10,25 +10,23 @@ app.registerConsole('#output')
     .registerButton('.super-spy-btn', handleSpyBtn)
     .registerButton('.regular-btn', handleRegularBtn)
 
-
 function handleSpyBtn() {
-    const btnClassList = app.buttonElement('.super-spy-btn').classList
-    btnClassList.toggle('red')
-
-    const btnColor = btnClassList.contains('red')
-        ? '<span class="text-red">red</span>'
-        : '<span class="text-blue">blue</span>'
-
+    const btnColor = handleBtn('.super-spy-btn', 'red')
     app.consoleLog(`The button is now ${btnColor}.`)
 }
 
 function handleRegularBtn() {
-    const btnClassList = app.buttonElement('.regular-btn').classList
-    btnClassList.toggle('orange')
+    const btnColor = handleBtn('.regular-btn', 'orange')
+    app.log(`The button is now ${btnColor}.`)
+}
 
-    const btnColor = btnClassList.contains('orange')
-        ? '<span class="text-orange">orange</span>'
+function handleBtn(btnSelector, btnColor) {
+    const btnClassList = app.buttonElement(btnSelector).classList
+    btnClassList.toggle(btnColor)
+
+    const buttonHtml = btnClassList.contains(btnColor)
+        ? `<span class="text-${btnColor}">${btnColor}</span>`
         : '<span class="text-blue">blue</span>'
 
-    app.log(`The button is now ${btnColor}.`)
+    return buttonHtml
 }

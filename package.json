@@ -5,9 +5,7 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "dev": "vite --open",
-    "build": "vite build",
-    "preview": "vite preview"
+    "dev": "vite --open"
   },
   "devDependencies": {
     "vite": "^3.0.7"
