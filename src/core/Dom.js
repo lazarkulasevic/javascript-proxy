@@ -22,7 +22,12 @@ class Dom extends Interceptor {
                     console.log(`The button will be registered on root "${args[0]}".`)
                     break
                 case 'consoleLog':
-                    console.log(`New HTML output log at ${new Date().toLocaleString('en-GB')}:`, ...args)
+                    const msg = `New HTML output log at ${new Date().toLocaleString('en-GB')}: ${args}`
+                    console.log(msg)
+                    // Alert instead of console log on mobile device
+                    if (window.matchMedia('(max-width: 475px)').matches) {
+                        alert(msg)
+                    }
                     break
             }
         }
@@ -67,6 +72,17 @@ class Dom extends Interceptor {
     }
 
     /**
+     * @param {String} root
+     * @param {Function} handler
+     */
+    registerButton(root, handler) {
+        this.buttons[root] = document.querySelector(root)
+        this.buttons[root].addEventListener('click', handler)
+        console.log('The button is registered.')
+        return this
+    }
+
+    /**
      * @description This method is not being watched
      * @param {String} data
      */
@@ -80,17 +96,6 @@ class Dom extends Interceptor {
      */
     consoleLog(data) {
         this.log(data)
-        return this
-    }
-
-    /**
-     * @param {String} root
-     * @param {Function} handler
-     */
-    registerButton(root, handler) {
-        this.buttons[root] = document.querySelector(root)
-        this.buttons[root].addEventListener('click', handler)
-        console.log('The button is registered.')
         return this
     }
 }
